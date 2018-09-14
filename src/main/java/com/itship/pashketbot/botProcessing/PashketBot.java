@@ -1,18 +1,21 @@
 package com.itship.pashketbot.botProcessing;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.telegram.telegrambots.api.methods.send.SendMessage;
-import org.telegram.telegrambots.api.objects.Update;
+import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.exceptions.TelegramApiException;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class PashketBot extends TelegramLongPollingBot {
 
-    @Value("${bot_name}")
-    private String BOT_NAME;
+    private String botName;
+    private String botToken;
 
-    @Value("${bot_token}")
-    private String BOT_TOKEN;
+    public PashketBot(DefaultBotOptions options, String botName, String botToken) {
+        super(options);
+        this.botName = botName;
+        this.botToken = botToken;
+    }
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -31,11 +34,11 @@ public class PashketBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return BOT_NAME;
+        return botName;
     }
 
     @Override
     public String getBotToken() {
-        return BOT_TOKEN;
+        return botToken;
     }
 }
