@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class PashketbotApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PashketbotApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(PashketbotApplication.class, args);
+    }
 }
