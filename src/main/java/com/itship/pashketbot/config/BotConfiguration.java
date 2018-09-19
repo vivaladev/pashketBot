@@ -18,17 +18,17 @@ public class BotConfiguration {
     @Bean
     @ConditionalOnProperty(name = "bot.enabled", havingValue = "true")
     public PashketBot pingServiceBotProxy(
-            @Value("${bot.credential.telegram.login}") final String botName,
-            @Value("${bot.credential.telegram.token}") final String botToken,
+            @Value("${telegram.credentional.bot.login}") final String botName,
+            @Value("${telegram.credentional.bot.token}") final String botToken,
             DefaultBotOptions botOptions) {
         return new PashketBot(botOptions, botName, botToken);
     }
 
     @Bean
-    public DefaultBotOptions botOptions(@Value("${bot.config.proxy.host}") final String proxyHost,
-                                        @Value("${bot.config.proxy.port}") final String proxyPort,
-                                        @Value("${bot.config.proxy.pass}") final String proxyPass,
-                                        @Value("${bot.config.proxy.user}") final String proxyUser) {
+    public DefaultBotOptions botOptions(@Value("${telegram.credentional.proxy.host}") final String proxyHost,
+                                        @Value("${telegram.credentional.proxy.port}") final String proxyPort,
+                                        @Value("${telegram.credentional.proxy.pass}") final String proxyPass,
+                                        @Value("${telegram.credentional.proxy.user}") final String proxyUser) {
         if (!StringUtils.isEmpty(proxyUser) && !StringUtils.isEmpty(proxyPass)) {
             Authenticator.setDefault(new Authenticator() {
                 @Override
