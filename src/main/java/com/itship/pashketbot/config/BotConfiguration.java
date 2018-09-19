@@ -1,11 +1,12 @@
 package com.itship.pashketbot.config;
 
-import com.itship.pashketbot.botProcessing.PashketBot;
+import com.itship.pashketbot.bot.PashketBot;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
+import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.meta.ApiContext;
 
@@ -21,7 +22,7 @@ public class BotConfiguration {
             @Value("${telegram.credentional.bot.login}") final String botName,
             @Value("${telegram.credentional.bot.token}") final String botToken,
             DefaultBotOptions botOptions) {
-        return new PashketBot(botOptions, botName, botToken);
+        return new PashketBot(botName, botToken, botOptions);
     }
 
     @Bean

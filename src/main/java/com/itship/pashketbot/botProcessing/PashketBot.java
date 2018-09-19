@@ -1,5 +1,7 @@
-package com.itship.pashketbot.botProcessing;
+/*package com.itship.pashketbot.botProcessing;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -11,6 +13,8 @@ public class PashketBot extends TelegramLongPollingBot {
     private String botName;
     private String botToken;
 
+    public PashketBot() {}
+
     public PashketBot(DefaultBotOptions options, String botName, String botToken) {
         super(options);
         this.botName = botName;
@@ -19,7 +23,6 @@ public class PashketBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        // We check if the update has a message and the message has text
         if (update.hasMessage() && update.getMessage().hasText()) {
             SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
                     .setChatId(update.getMessage().getChatId())
@@ -41,4 +44,4 @@ public class PashketBot extends TelegramLongPollingBot {
     public String getBotToken() {
         return botToken;
     }
-}
+}*/
