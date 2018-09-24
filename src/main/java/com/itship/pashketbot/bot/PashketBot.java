@@ -25,6 +25,7 @@ public class PashketBot extends TelegramLongPollingBot{
 
     private String botName;
     private String botToken;
+    private BotSession session;
 
     public PashketBot(@Value("${telegram.credentional.bot.name}") String botName,
                       @Value("${telegram.credentional.bot.token}") String botToken,
@@ -46,7 +47,7 @@ public class PashketBot extends TelegramLongPollingBot{
 
     @Override
     public void onUpdateReceived(Update update) {
-        logger.info("Update reseived");
+        logger.info("Update received");
         if (update.hasMessage()) {
             Message message = update.getMessage();
             SendMessage response = new SendMessage();
@@ -67,7 +68,7 @@ public class PashketBot extends TelegramLongPollingBot{
     public void start() {
         logger.info("username: {}, token: {}", botName, botToken);
         try {
-            telegramBotsApi.registerBot(this);
+            session = telegramBotsApi.registerBot(this);
         } catch (Exception e) {
             logger.error("Error: {}", e.getMessage(), e);
         }
