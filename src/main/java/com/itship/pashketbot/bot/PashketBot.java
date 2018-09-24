@@ -1,5 +1,6 @@
 package com.itship.pashketbot.bot;
 
+import com.itship.pashketbot.handlers.MessageHandler;
 import com.sun.research.ws.wadl.Application;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,11 +16,14 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.generics.BotSession;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 @Component
 public class PashketBot extends TelegramLongPollingBot{
 
     private static final Logger logger = LoggerFactory.getLogger(PashketBot.class);
+
+    private final List<MessageHandler> messageHandlers;
 
     private TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
 
@@ -29,8 +33,10 @@ public class PashketBot extends TelegramLongPollingBot{
 
     public PashketBot(@Value("${telegram.credentional.bot.name}") String botName,
                       @Value("${telegram.credentional.bot.token}") String botToken,
+                      List<MessageHandler> messageHandlers,
                       DefaultBotOptions defaultBotOptions) {
         super(defaultBotOptions);
+        this.messageHandlers = messageHandlers;
         this.botName = botName;
         this.botToken = botToken;
     }
@@ -49,17 +55,15 @@ public class PashketBot extends TelegramLongPollingBot{
     public void onUpdateReceived(Update update) {
         logger.info("Update received");
         if (update.hasMessage()) {
-            Message message = update.getMessage();
-            SendMessage response = new SendMessage();
-            Long chatId = message.getChatId();
-            response.setChatId(chatId);
-            String text = message.getText();
-            response.setText(text);
             try {
-                execute(response);
-                logger.info("Sent message \"{}\" to {}", text, chatId);
+                for (MessageHandler messageHandler : messageHandlers) {
+                    final boolean ans = messageHandler.execute(update.getMessage(), this);
+                    if (ans) {
+                        return;
+                    }
+                }
             } catch (TelegramApiException e) {
-                logger.error("Failed to send message \"{}\" to {} due to error: {}", text, chatId, e.getMessage());
+                logger.error("Failed to send message \"{}\" to {} due to error: {}", e.getMessage());
             }
         }
     }

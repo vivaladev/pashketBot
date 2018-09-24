@@ -1,6 +1,7 @@
 package com.itship.pashketbot.config;
 
 import com.itship.pashketbot.bot.PashketBot;
+import com.itship.pashketbot.handlers.MessageHandler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,7 @@ import org.telegram.telegrambots.meta.ApiContext;
 
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
+import java.util.List;
 
 @Configuration
 public class BotConfiguration {
@@ -21,8 +23,9 @@ public class BotConfiguration {
     public PashketBot pingServiceBotProxy(
             @Value("${telegram.credentional.bot.login}") final String botName,
             @Value("${telegram.credentional.bot.token}") final String botToken,
+            List<MessageHandler> messageHandlers,
             DefaultBotOptions botOptions) {
-        return new PashketBot(botName, botToken, botOptions);
+        return new PashketBot(botName, botToken, messageHandlers, botOptions);
     }
 
     @Bean
