@@ -44,7 +44,7 @@ public class BotConfiguration {
         if (!StringUtils.isEmpty(proxyHost) && !StringUtils.isEmpty(proxyPort)) {
             botOptions.setProxyHost(proxyHost);
             botOptions.setProxyPort(Integer.valueOf(proxyPort));
-            botOptions.setProxyType(DefaultBotOptions.ProxyType.SOCKS5);
+            botOptions.setProxyType(DefaultBotOptions.ProxyType.NO_PROXY);
         }
         return botOptions;
     }
