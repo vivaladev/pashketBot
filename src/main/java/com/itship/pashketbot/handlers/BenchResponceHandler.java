@@ -9,9 +9,9 @@ import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Component
-public class BotResponseHandler extends AbstractHandler implements MessageHandler {
+public class BenchResponceHandler extends AbstractHandler implements MessageHandler{
 
-    protected BotResponseHandler(MessageProvider provider) {
+    protected BenchResponceHandler(MessageProvider provider) {
         super(provider);
     }
 
@@ -19,11 +19,14 @@ public class BotResponseHandler extends AbstractHandler implements MessageHandle
     public boolean execute(Message message, AbsSender sender) throws TelegramApiException {
         final String textMessage = message.getText();
 
-        if (StringUtils.startsWithIgnoreCase(textMessage, "/hi")) {
-            sendMessage(sender, message.getChatId(), LocalizedMessage.DEFAULT_MESSAGE);
+        if (StringUtils.startsWithIgnoreCase(textMessage, "/projs")) {
+            sendMessage(sender, message.getChatId(), LocalizedMessage.BABUSHKA_MES);
+            return true;
+        }
+        if (StringUtils.startsWithIgnoreCase(textMessage, "/rodrigo")) {
+            sendMessage(sender, message.getChatId(), LocalizedMessage.RODRIGO_MES);
             return true;
         }
         return false;
     }
-
 }
