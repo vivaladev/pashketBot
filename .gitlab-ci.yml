@@ -1,6 +1,6 @@
-image: pashketbot:latest
+image: docker:latest
 services:
-- pashketbot:dind
+- docker:dind
 
 variables:
   DOCKER_DRIVER: overlay
