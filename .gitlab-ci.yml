@@ -1,6 +1,6 @@
-image: docker:latest
+image: pashketbot:latest
 services:
-- docker:dind
+- pashketbot:dind
 
 variables:
   DOCKER_DRIVER: overlay
@@ -14,7 +14,7 @@ stages:
 maven-build:
   image: maven:3-jdk-8
   stage: build
-  script: "mvn package -B"
+  script: "mvn package"
   artifacts:
     paths:
     - target/*.jar

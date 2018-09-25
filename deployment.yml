@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pashketbot
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: pashketbot
+    spec:
+      containers:
+      - name: pashketbot
+        image: registry.gitlab.com/kir-vlas/pashketbot
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: registry.gitlab.com
