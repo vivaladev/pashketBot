@@ -22,7 +22,7 @@ maven-build:
 build:
   stage: package
   script:
-  - docker build ./ -t pashket-bot
+  - docker build ./ -t kirivlas/pashket-bot
   - docker login -u kirivlas -p $CI_BUILD_TOKEN
   - docker push kirivlas/pashketbot
 
