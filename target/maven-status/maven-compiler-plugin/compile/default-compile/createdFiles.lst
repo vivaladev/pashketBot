@@ -1,0 +1,12 @@
+com/itship/pashketbot/config/BotConfiguration$1.class
+com/itship/pashketbot/utils/MessageProvider.class
+com/itship/pashketbot/handlers/BotResponseHandler.class
+com/itship/pashketbot/user/CurrentUser.class
+com/itship/pashketbot/utils/LocalizedMessage.class
+com/itship/pashketbot/handlers/MessageHandler.class
+com/itship/pashketbot/handlers/AbstractHandler.class
+com/itship/pashketbot/user/UserInfo.class
+com/itship/pashketbot/config/BotConfiguration.class
+com/itship/pashketbot/bot/PashketBot.class
+com/itship/pashketbot/PashketbotApplication.class
+com/itship/pashketbot/handlers/BenchResponceHandler.class
