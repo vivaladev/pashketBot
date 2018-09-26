@@ -22,7 +22,7 @@ maven-build:
 build:
   stage: build
   script:
-  - docker build
+  - docker build ./
 
 deploy:
   stage: deploy
