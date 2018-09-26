@@ -19,7 +19,12 @@ maven-build:
     paths:
     - target/*.jar
 
+build:
+  stage: build
+  script:
+  - docker build
+
 deploy:
   stage: deploy
   script:
-  - mvn spring-boot:run
+  - docker run pashketBot
