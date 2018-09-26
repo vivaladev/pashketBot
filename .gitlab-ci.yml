@@ -24,7 +24,7 @@ build:
   script:
   - docker build ./ -t kirivlas/pashket-bot
   - docker login -u kirivlas -p $CI_BUILD_TOKEN
-  - docker push kirivlas/pashketbot
+  - docker push kirivlas/pashket-bot
 
 deploy:
   stage: deploy
