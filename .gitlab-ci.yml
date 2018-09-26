@@ -1,6 +1,6 @@
 image: docker:latest
 services:
-- docker:latest
+- docker:dind
 
 variables:
   DOCKER_DRIVER: overlay
@@ -19,7 +19,12 @@ maven-build:
     paths:
     - target/*.jar
 
+build:
+  stage: package
+  script:
+  - docker build ./ -t pashket-bot
+
 deploy:
   stage: deploy
   script:
-  - java -jar pashketbot-0.0.1-SNAPSHOT.jar
+  - docker run pashket-bot
