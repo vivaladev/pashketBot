@@ -15,7 +15,6 @@ import org.telegram.telegrambots.ApiContextInitializer;
 public class PashketbotApplication {
 
     public static void main(String[] args) {
-        ApiContextInitializer.init();
         SpringApplication.run(PashketbotApplication.class, args);
     }
 }

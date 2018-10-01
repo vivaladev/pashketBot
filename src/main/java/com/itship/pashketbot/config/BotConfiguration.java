@@ -18,6 +18,10 @@ import java.util.List;
 @Configuration
 public class BotConfiguration {
 
+    static {
+        ApiContextInitializer.init();
+    }
+
     @Bean
     @ConditionalOnProperty(name = "bot.enabled", havingValue = "true")
     public PashketBot pingServiceBotProxy(

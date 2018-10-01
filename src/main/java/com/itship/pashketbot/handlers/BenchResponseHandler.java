@@ -9,9 +9,9 @@ import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Component
-public class BenchResponceHandler extends AbstractHandler implements MessageHandler{
+public class BenchResponseHandler extends AbstractHandler implements MessageHandler{
 
-    protected BenchResponceHandler(MessageProvider provider) {
+    protected BenchResponseHandler(MessageProvider provider) {
         super(provider);
     }
 
