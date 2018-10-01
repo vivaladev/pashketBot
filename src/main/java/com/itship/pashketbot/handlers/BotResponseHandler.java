@@ -19,9 +19,11 @@ public class BotResponseHandler extends AbstractHandler implements MessageHandle
     public boolean execute(Message message, AbsSender sender) throws TelegramApiException {
         final String textMessage = message.getText();
 
-        if (StringUtils.startsWithIgnoreCase(textMessage, "/hi")) {
-            sendMessage(sender, message.getChatId(), LocalizedMessage.DEFAULT_MESSAGE);
-            return true;
+        if (StringUtils.isNotEmpty(textMessage)) {
+            if (StringUtils.startsWithIgnoreCase(textMessage, "/hi")) {
+                sendMessage(sender, message.getChatId(), LocalizedMessage.DEFAULT_MESSAGE);
+                return true;
+            }
         }
         return false;
     }
