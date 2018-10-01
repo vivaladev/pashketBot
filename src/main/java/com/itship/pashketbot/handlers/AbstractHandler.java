@@ -7,7 +7,10 @@ import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.text.MessageFormat;
+import java.util.Arrays;
+import java.util.StringJoiner;
 
+@SuppressWarnings("SameParameterValue")
 public abstract class AbstractHandler {
 
     private MessageProvider messageProvider;
@@ -22,12 +25,22 @@ public abstract class AbstractHandler {
     }
 
     protected void sendMessage(final AbsSender sender, final Long chatId,
+                               final LocalizedMessage message, String... additionals) throws TelegramApiException {
+        sender.execute(message(chatId, message, additionals));
+    }
+
+    protected void sendMessage(final AbsSender sender, final Long chatId,
                                final LocalizedMessage message, final Object... args) throws TelegramApiException {
         sender.execute(message(chatId, message, args));
     }
 
     protected SendMessage message(final Long chatId, final LocalizedMessage message) {
         final String localizedMessage = messageProvider.getMessage(message);
+        return new SendMessage().setChatId(chatId).setText(localizedMessage).enableHtml(true);
+    }
+
+    protected SendMessage message(final Long chatId, final LocalizedMessage defaultMessage, final String... additionalMessages) {
+        final String localizedMessage = defaultMessage + String.join(" ", additionalMessages);
         return new SendMessage().setChatId(chatId).setText(localizedMessage).enableHtml(true);
     }
 
