@@ -31,4 +31,4 @@ deploy:
   script:
   - docker login -u kirivlas -p $CI_BUILD_TOKEN
   - docker pull kirivlas/pashket-bot
-  - docker run -d kirivlas/pashket-bot
+  - docker run -d --name pashketbot kirivlas/pashket-bot
