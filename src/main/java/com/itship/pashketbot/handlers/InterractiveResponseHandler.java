@@ -23,7 +23,7 @@ public class InterractiveResponseHandler extends AbstractHandler implements Mess
 
         if (StringUtils.startsWithIgnoreCase(textMessage, "/sword")) {
             Random rnd = new Random();
-            sendMessage(sender, message.getChatId(), LocalizedMessage.SWORD_MES, rnd.nextInt(100));
+            sendMessage(sender, message.getChatId(), LocalizedMessage.SWORD_MES, String.valueOf(rnd.nextInt(100)));
             return true;
         }
         if (StringUtils.startsWithIgnoreCase(textMessage, "/rev")) {

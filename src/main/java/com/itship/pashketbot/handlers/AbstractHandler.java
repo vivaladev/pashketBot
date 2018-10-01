@@ -40,7 +40,7 @@ public abstract class AbstractHandler {
     }
 
     protected SendMessage message(final Long chatId, final LocalizedMessage defaultMessage, final String... additionalMessages) {
-        final String localizedMessage = defaultMessage + String.join(" ", additionalMessages);
+        final String localizedMessage = messageProvider.getMessage(defaultMessage) + String.join(" ", additionalMessages);
         return new SendMessage().setChatId(chatId).setText(localizedMessage).enableHtml(true);
     }
 
