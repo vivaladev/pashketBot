@@ -15,6 +15,9 @@ maven-build:
   image: maven:3-jdk-8
   stage: build
   script: "mvn package"
+  only:
+  - cloud
+  - master
   artifacts:
     paths:
     - target/*.jar
@@ -25,6 +28,9 @@ build:
   - docker build ./ -t kirivlas/pashket-bot
   - docker login -u kirivlas -p $CI_BUILD_TOKEN
   - docker push kirivlas/pashket-bot
+  only:
+  - cloud
+  - master
 
 deploy:
   stage: deploy
@@ -32,3 +38,5 @@ deploy:
   - docker login -u kirivlas -p $CI_BUILD_TOKEN
   - docker pull kirivlas/pashket-bot
   - docker run -d --name pashketbot kirivlas/pashket-bot
+  only:
+  - master
