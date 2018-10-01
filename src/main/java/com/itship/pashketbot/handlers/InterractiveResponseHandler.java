@@ -21,15 +21,17 @@ public class InterractiveResponseHandler extends AbstractHandler implements Mess
     public boolean execute (Message message, AbsSender sender) throws TelegramApiException {
         final String textMessage = message.getText();
 
-        if (StringUtils.startsWithIgnoreCase(textMessage, "/sword")) {
-            Random rnd = new Random();
-            sendMessage(sender, message.getChatId(), LocalizedMessage.SWORD_MES, String.valueOf(rnd.nextInt(100)));
-            return true;
-        }
-        if (StringUtils.startsWithIgnoreCase(textMessage, "/rev")) {
-            String phrase = textMessage.substring(4);
-            sendMessage(sender, message.getChatId(), LocalizedMessage.REVERSE_NAME, StringUtils.reverse(phrase));
-            return true;
+        if (StringUtils.isNotEmpty(textMessage)) {
+            if (StringUtils.startsWithIgnoreCase(textMessage, "/sword")) {
+                Random rnd = new Random();
+                sendMessage(sender, message.getChatId(), LocalizedMessage.SWORD_MES, String.valueOf(rnd.nextInt(100)));
+                return true;
+            }
+            if (StringUtils.startsWithIgnoreCase(textMessage, "/rev")) {
+                String phrase = textMessage.substring(4);
+                sendMessage(sender, message.getChatId(), LocalizedMessage.REVERSE_NAME, StringUtils.reverse(phrase));
+                return true;
+            }
         }
         return false;
     }

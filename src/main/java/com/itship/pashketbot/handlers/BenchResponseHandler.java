@@ -19,13 +19,15 @@ public class BenchResponseHandler extends AbstractHandler implements MessageHand
     public boolean execute(Message message, AbsSender sender) throws TelegramApiException {
         final String textMessage = message.getText();
 
-        if (StringUtils.startsWithIgnoreCase(textMessage, "/projs")) {
-            sendMessage(sender, message.getChatId(), LocalizedMessage.BABUSHKA_MES);
-            return true;
-        }
-        if (StringUtils.startsWithIgnoreCase(textMessage, "/rodrigo")) {
-            sendMessage(sender, message.getChatId(), LocalizedMessage.RODRIGO_MES);
-            return true;
+        if (StringUtils.isNotEmpty(textMessage)) {
+            if (StringUtils.startsWithIgnoreCase(textMessage, "/projs")) {
+                sendMessage(sender, message.getChatId(), LocalizedMessage.BABUSHKA_MES);
+                return true;
+            }
+            if (StringUtils.startsWithIgnoreCase(textMessage, "/rodrigo")) {
+                sendMessage(sender, message.getChatId(), LocalizedMessage.RODRIGO_MES);
+                return true;
+            }
         }
         return false;
     }
