@@ -9,9 +9,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.telegram.telegrambots.ApiContextInitializer;
 
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
-@EnableCaching
-@EnableScheduling
-@Import(com.itship.pashketbot.config.BotConfiguration.class)
 public class PashketbotApplication {
 
     public static void main(String[] args) {
